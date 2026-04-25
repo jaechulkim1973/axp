@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXP | Sky-Link Dual Refueling & Charging Network</title>
+<meta name="description" content="G-HVTOL Gold-Runner 10대 동시 공중 급유(Jet-A1/SAF) 및 초고속충전 듀얼 공급 시스템">
+<link rel="stylesheet" href="website_style.css">
+<style>
+.network-diagram{position:relative;width:100%;max-width:800px;margin:4rem auto;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.mothership{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.7rem;color:#000;z-index:10;box-shadow:0 0 60px var(--primary-glow);animation:pulse 2s infinite;text-align:center;line-height:1.2}
+@keyframes pulse{0%,100%{box-shadow:0 0 40px var(--primary-glow)}50%{box-shadow:0 0 80px var(--primary-glow)}}
+.drone-node{position:absolute;width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--primary);backdrop-filter:blur(10px)}
+.tether{position:absolute;top:50%;left:50%;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent),transparent);transform-origin:0 0;opacity:0.5;box-shadow:0 0 8px var(--primary-glow)}
+.cable-layer{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;backdrop-filter:blur(20px);transition:var(--transition)}
+.cable-layer:hover{border-color:var(--primary-glow);transform:translateY(-5px)}
+.cable-layer h4{color:var(--primary);margin-bottom:1rem;font-size:1.1rem}
+.power-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-top:3rem;text-align:center}
+.pf-item{padding:1.25rem 0.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;position:relative}
+.pf-item::after{content:'→';position:absolute;right:-0.8rem;top:50%;transform:translateY(-50%);color:var(--primary);font-size:1.2rem;z-index:5}
+.pf-item:last-child::after{display:none}
+.pf-icon{font-size:1.8rem;margin-bottom:0.4rem}
+.pf-label{font-size:0.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em}
+.pf-value{font-family:var(--font-mono);font-weight:700;color:var(--primary);font-size:0.95rem;margin-top:0.2rem}
+.img-showcase{width:100%;border-radius:24px;border:1px solid var(--border);margin:3rem 0;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.dual-badge{display:inline-block;padding:0.3rem 0.8rem;border-radius:8px;font-size:0.7rem;font-weight:700;letter-spacing:0.05em}
+.badge-fuel{background:rgba(255,140,0,0.15);color:#ff8c00;border:1px solid rgba(255,140,0,0.3)}
+.badge-elec{background:rgba(0,242,255,0.1);color:var(--primary);border:1px solid rgba(0,242,255,0.3)}
+.umbilical-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+@media(max-width:768px){.power-flow{grid-template-columns:repeat(3,1fr)}.umbilical-grid{grid-template-columns:1fr}.network-diagram{max-width:350px}}
+</style>
+</head>
+<body>
+<div class="bg-grain"></div>
+<div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+<nav class="navbar">
+<a href="index.html" class="logo"><span>AXP</span></a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="#system">Dual System</a>
+<a href="#umbilical">Umbilical</a>
+<a href="#network">Network</a>
+<a href="#specs">Specs</a>
+</div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+<div class="hero-bg"><img src="hero-gold-runner.png" alt="Aerial Charging Network"></div>
+<div class="hero-content reveal">
+<div class="hero-badge">Dual-Mode Aerial Refueling & Charging System</div>
+<h1 class="text-gradient">SKY-LINK<br>DUAL SUPPLY</h1>
+<p>10대의 Gold-Runner G-HVTOL에 <strong>가스터빈 연료(Jet-A1/SAF)</strong>와 <strong>초고속 배터리 충전</strong>을<br>동시 공급하는 차세대 공중 듀얼 급유 네트워크 시스템</p>
+</div>
+<div class="dashboard-grid reveal" style="margin-top:5rem">
+<div class="stat-card"><div class="stat-label">Simultaneous Supply</div><div class="stat-value">10 Units</div></div>
+<div class="stat-card"><div class="stat-label">Fuel Transfer Rate</div><div class="stat-value">150 L/min</div></div>
+<div class="stat-card"><div class="stat-label">Electric Charge Rate</div><div class="stat-value">350 kW</div></div>
+<div class="stat-card"><div class="stat-label">Full Refuel + Charge</div><div class="stat-value">6 min</div></div>
+</div>
+</header>
+
+<!-- Dual System Architecture -->
+<section id="system" class="section">
+<div class="section-header reveal">
+<div class="hero-badge" style="color:var(--secondary);border-color:var(--secondary-glow)">Hybrid Architecture</div>
+<h2 class="section-title text-gradient">Dual-Mode Mothership</h2>
+<p class="section-subtitle">가스터빈 연료 급유(Fuel Line)와 배터리 초고속충전(Power Line)을 단일 엄빌리컬로 통합 공급</p>
+</div>
+<div class="grid-2">
+<div class="reveal">
+<img src="cnf-printing.png" alt="Mothership Platform" class="img-showcase">
+</div>
+<div class="reveal">
+<div class="roadmap-container">
+<div class="roadmap-item">
+<div class="roadmap-date">TIER 1 — MOTHERSHIP TANKER</div>
+<h3>공중 급유/발전 플랫폼</h3>
+<p class="text-dim">Jet-A1/SAF 연료 탱크 <strong>8,000L</strong> + 수소연료전지 1MW + LiS 배터리 4.5MWh 탑재. 고도 3,000m에서 체공하며 10개 듀얼 포트로 연료+전력을 동시 분배.</p>
+</div>
+<div class="roadmap-item">
+<div class="roadmap-date">TIER 2 — UMBILICAL LINE</div>
+<h3>통합 엄빌리컬 케이블</h3>
+<p class="text-dim">내부에 <span class="badge-fuel dual-badge">연료관 (ID 12mm)</span>과 <span class="badge-elec dual-badge">전력선 (1,500V/250A)</span>을 동축 구조로 통합. 단일 커넥터로 도킹 즉시 급유+충전 동시 개시.</p>
+</div>
+<div class="roadmap-item">
+<div class="roadmap-date">TIER 3 — GOLD-RUNNER 수급부</div>
+<h3>연료 수급 + 수전 인터페이스</h3>
+<p class="text-dim">기체 상부 자동 도킹 포트에서 연료는 터빈 연료계통으로, 전력은 DC-DC 컨버터를 거쳐 배터리팩으로 동시 공급. BMS/FMS 통합 관제.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Dual Energy Flow -->
+<h3 class="text-gradient reveal" style="text-align:center;margin-top:6rem;font-size:1.5rem">Dual Energy Flow Architecture</h3>
+<p class="reveal" style="text-align:center;color:var(--text-muted);margin-bottom:2rem;font-size:0.85rem">
+<span class="badge-fuel dual-badge">FUEL PATH</span> 연료 급유 경로 &nbsp;&nbsp;|&nbsp;&nbsp;
+<span class="badge-elec dual-badge">ELECTRIC PATH</span> 전력 공급 경로
+</p>
+<div class="power-flow reveal">
+<div class="pf-item"><div class="pf-icon">🛢️</div><div class="pf-label">Jet-A1/SAF Tank</div><div class="pf-value">8,000 L</div></div>
+<div class="pf-item"><div class="pf-icon">⛽</div><div class="pf-label">Fuel Pump</div><div class="pf-value">15 L/min ×10</div></div>
+<div class="pf-item"><div class="pf-icon">🔗</div><div class="pf-label">Umbilical ×10</div><div class="pf-value">Fuel + Power</div></div>
+<div class="pf-item"><div class="pf-icon">⚡</div><div class="pf-label">DC Bus</div><div class="pf-value">1,500V</div></div>
+<div class="pf-item"><div class="pf-icon">🔌</div><div class="pf-label">350kW ×10</div><div class="pf-value">3.5 MW</div></div>
+<div class="pf-item"><div class="pf-icon">🛩️</div><div class="pf-label">Gold-Runner</div><div class="pf-value">6 min full</div></div>
+</div>
+</section>
+
+<!-- Umbilical Cable Spec -->
+<section id="umbilical" class="section">
+<div class="section-header reveal">
+<h2 class="section-title text-gradient">Integrated Umbilical Cable</h2>
+<p class="section-subtitle">연료관 + 전력선 + 냉각 + 데이터를 단일 케이블에 통합한 항공용 엄빌리컬</p>
+</div>
+<div class="grid-2 reveal">
+<div><img src="graphene-detail.png" alt="Cable Cross Section" class="img-showcase"></div>
+<div>
+<div class="umbilical-grid" style="grid-template-columns:1fr">
+
+<div class="cable-layer">
+<h4><span class="badge-fuel dual-badge" style="margin-right:0.5rem">FUEL</span> 연료 이송관</h4>
+<p class="text-dim">내경 12mm 스테인리스 316L 튜브 + PTFE 라이닝. Jet-A1/SAF 대응, 최대 유압 10 bar, 유량 15 L/min. MIL-DTL-27422 드라이 브레이크 커플링으로 무누출 자동 분리.</p>
+</div>
+
+<div class="cable-layer">
+<h4><span class="badge-elec dual-badge" style="margin-right:0.5rem">ELEC</span> 고전류 전력선</h4>
+<p class="text-dim">그래핀-구리(Gr-Cu) 합금 도체 95mm², 1,500V DC / 250A. 전기전도도 구리 대비 130%, 중량 대비 전류밀도 2.5배. Fluorinert FC-3283 액냉으로 도체 온도 65°C 이하.</p>
+</div>
+
+<div class="cable-layer">
+<h4>🛡️ 보호 외피 + 데이터 라인</h4>
+<p class="text-dim">CNF/PEKK 편조 차폐 + 그래핀 코팅 외피. EMI 차폐 60dB, 인장강도 1,200N. 광섬유 데이터 라인(10Gbps) 내장. 총 중량 0.85 kg/m, 정전기 방지 처리.</p>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- Safety Features -->
+<h3 class="text-gradient reveal" style="text-align:center;margin-top:6rem;font-size:1.5rem;margin-bottom:3rem">Safety & Fail-Safe Systems</h3>
+<div class="grid-2 reveal">
+<div class="card-premium">
+<div class="card-icon">🛢️</div>
+<h3 style="color:#ff8c00">Fuel Safety</h3>
+<ul style="color:var(--text-dim);list-style:none;font-size:0.9rem;line-height:2">
+<li>• 드라이 브레이크 커플링 — 분리 시 연료 누출 zero</li>
+<li>• 이중 차단 밸브 + 유량 센서 실시간 감시</li>
+<li>• 연료관 불활성 가스(N₂) 퍼지 시스템</li>
+<li>• 정전기 방지 본딩 와이어 내장</li>
+<li>• OBIGGS(기내 불활성 가스 생성장치) 적용</li>
+</ul>
+</div>
+<div class="card-premium">
+<div class="card-icon">⚡</div>
+<h3 class="text-cyan">Electric Safety</h3>
+<ul style="color:var(--text-dim);list-style:none;font-size:0.9rem;line-height:2">
+<li>• 과전류 차단기(SSPC) + 아크 결함 감지(AFD)</li>
+<li>• 절연 모니터링 — 연료관/전력선 간 이격 ≥15mm</li>
+<li>• 긴급 자동 분리(Emergency Release) ≤0.5초</li>
+<li>• 온도 퓨즈 다중 배치 (75°C 트립)</li>
+<li>• 연료/전력 격벽 이중 실드 구조</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- Network Topology -->
+<section id="network" class="section">
+<div class="section-header reveal">
+<h2 class="section-title text-gradient">Network Topology</h2>
+<p class="section-subtitle">10대 Gold-Runner 동시 급유+충전을 위한 Hub-Spoke 듀얼 분배 네트워크</p>
+</div>
+<div class="network-diagram reveal" id="networkDiagram"></div>
+</section>
+
+<!-- Specs Table -->
+<section id="specs" class="section">
+<div class="section-header reveal"><h2 class="section-title text-gradient">System Specifications</h2></div>
+<div class="spec-container reveal">
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Mothership Tanker</th><th>Umbilical Cable</th><th>Gold-Runner 수급부</th></tr></thead>
+<tbody>
+<tr><td><span class="badge-fuel dual-badge">연료 종류</span></td><td>Jet-A1 / SAF (Bio-SPK)</td><td>—</td><td>Jet-A1 / SAF</td></tr>
+<tr><td><span class="badge-fuel dual-badge">연료 탱크 용량</span></td><td>8,000 L (자체 연료 별도)</td><td>—</td><td>80 L (기체 내 탱크)</td></tr>
+<tr><td><span class="badge-fuel dual-badge">급유 유량</span></td><td>총 150 L/min (10포트)</td><td>15 L/min / line</td><td>15 L/min (수급)</td></tr>
+<tr><td><span class="badge-fuel dual-badge">급유 압력</span></td><td>10 bar (출력)</td><td>8 bar (말단)</td><td>수용 3~8 bar</td></tr>
+<tr><td><span class="badge-fuel dual-badge">급유 시간 (80L)</span></td><td>—</td><td>—</td><td>약 5.5분</td></tr>
+<tr style="background:rgba(255,255,255,0.02)"><td colspan="4" style="text-align:center;color:var(--text-muted);font-size:0.75rem;padding:0.5rem">── Electric Charging ──</td></tr>
+<tr><td><span class="badge-elec dual-badge">전압</span></td><td>DC 1,500V (Bus)</td><td>DC 1,500V</td><td>DC 800V (변환)</td></tr>
+<tr><td><span class="badge-elec dual-badge">전류</span></td><td>총 2,500A</td><td>250A / line</td><td>250A (수전)</td></tr>
+<tr><td><span class="badge-elec dual-badge">전력</span></td><td>3.5 MW (총)</td><td>350 kW / line</td><td>350 kW (입력)</td></tr>
+<tr><td><span class="badge-elec dual-badge">충전 시간</span></td><td>—</td><td>—</td><td>8분 (0→80%)</td></tr>
+<tr style="background:rgba(255,255,255,0.02)"><td colspan="4" style="text-align:center;color:var(--text-muted);font-size:0.75rem;padding:0.5rem">── Common ──</td></tr>
+<tr><td>엄빌리컬 길이</td><td>—</td><td>50~200m (가변)</td><td>—</td></tr>
+<tr><td>엄빌리컬 중량</td><td>—</td><td>0.85 kg/m</td><td>—</td></tr>
+<tr><td>도킹 방식</td><td>자동 마그네틱 + 드라이브레이크</td><td>MIL-STD 복합 커넥터</td><td>자동 수급 포트</td></tr>
+<tr><td>통신</td><td>CAN-FD + 5G</td><td>광섬유 10Gbps</td><td>CAN-FD + BMS/FMS</td></tr>
+<tr><td>안전</td><td>N₂ 퍼지 / SSPC / 아크감지</td><td>드라이브레이크 / 온도퓨즈</td><td>과충전보호 / 연료차단밸브</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- Operational Modes -->
+<div style="margin-top:6rem">
+<h3 class="text-gradient reveal" style="text-align:center;font-size:1.5rem;margin-bottom:3rem">Operational Modes</h3>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem" class="reveal">
+<div class="card-premium">
+<div class="card-icon">🔄</div>
+<h3 class="text-cyan">Mode A — 순환 급유</h3>
+<p class="text-dim">5대씩 교대 도킹. 6분 동시 급유+충전 → 50분 비행. 연속 순환 체계로 무제한 작전 영역 확보.</p>
+</div>
+<div class="card-premium">
+<div class="card-icon">🔗</div>
+<h3 style="color:#ff8c00">Mode B — 테더 비행</h3>
+<p class="text-dim">엄빌리컬 연결 상태 비행. 연료+전력 실시간 공급, 반경 200m 내 무제한 체공. 장기 감시 임무.</p>
+</div>
+<div class="card-premium">
+<div class="card-icon">⛽</div>
+<h3 style="color:var(--accent)">Mode C — 연료 전용</h3>
+<p class="text-dim">배터리 충분 시 가스터빈 연료만 급유. 3분 이내 급유 완료. 고속 순찰 작전에 최적화.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="footer-logo logo"><span>AXP</span></div>
+<div class="footer-links">
+<a href="index.html">Home</a><a href="#system">Dual System</a><a href="#umbilical">Umbilical</a><a href="#network">Network</a><a href="#specs">Specs</a>
+</div>
+<p class="copyright">&copy; 2026 AXP — Sky-Link Dual Aerial Refueling & Charging Network. All Rights Reserved.</p>
+</footer>
+
+<script src="website_script.js"></script>
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('active')})},{threshold:0.1});
+reveals.forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{const n=document.querySelector('.navbar');window.scrollY>50?n.classList.add('scrolled'):n.classList.remove('scrolled')});
+
+// Network diagram with dual lines
+(function(){
+const c=document.getElementById('networkDiagram');
+if(!c)return;
+const ms=document.createElement('div');
+ms.className='mothership';ms.innerHTML='MOTHER<br>SHIP';
+c.appendChild(ms);
+for(let i=0;i<10;i++){
+const angle=(i*36-90)*Math.PI/180;
+const r=42;
+const x=50+r*Math.cos(angle);
+const y=50+r*Math.sin(angle);
+// Fuel tether (orange)
+const tf=document.createElement('div');
+tf.className='tether';tf.style.background='linear-gradient(90deg,#ff8c00,transparent)';
+tf.style.boxShadow='0 0 6px rgba(255,140,0,0.4)';tf.style.top='calc(50% - 2px)';
+const dx=x-50,dy=y-50,len=Math.sqrt(dx*dx+dy*dy),deg=Math.atan2(dy,dx)*180/Math.PI;
+tf.style.width=len+'%';tf.style.transform=`rotate(${deg}deg)`;
+c.appendChild(tf);
+// Power tether (cyan)
+const tp=document.createElement('div');
+tp.className='tether';tp.style.top='calc(50% + 2px)';
+tp.style.width=len+'%';tp.style.transform=`rotate(${deg}deg)`;
+c.appendChild(tp);
+// Drone node
+const d=document.createElement('div');
+d.className='drone-node';
+d.textContent='GR-'+(i+1).toString().padStart(2,'0');
+d.style.left=`calc(${x}% - 32px)`;d.style.top=`calc(${y}% - 32px)`;
+c.appendChild(d);
+}
+// Legend
+const leg=document.createElement('div');
+leg.style.cssText='text-align:center;margin-top:1rem;font-size:0.75rem;color:var(--text-muted)';
+leg.innerHTML='<span style="color:#ff8c00">━━</span> Fuel Line &nbsp;&nbsp; <span style="color:var(--primary)">━━</span> Power Line';
+c.parentElement.appendChild(leg);
+})();
+</script>
+</body>
+</html>

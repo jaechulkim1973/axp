@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXP | Sky-Dock Stratospheric Drone Station</title>
+    <meta name="description" content="성층권 드론스테이션 항공기 - 10대 Gold-Runner 동시 LH2 카트리지 교체 및 초고속충전">
+    <link rel="stylesheet" href="website_style.css">
+    <style>
+        .dock-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:4rem}
+        .dock-card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;backdrop-filter:var(--glass);transition:var(--transition)}
+        .dock-card:hover{border-color:var(--primary-glow);transform:translateY(-8px)}
+        .dock-num{font-family:var(--font-mono);font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .lh2-badge{display:inline-block;padding:0.35rem 0.85rem;border-radius:100px;font-size:0.7rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;background:rgba(0,200,255,0.1);color:#00c8ff;border:1px solid rgba(0,200,255,0.25)}
+        .charge-badge{display:inline-block;padding:0.35rem 0.85rem;border-radius:100px;font-size:0.7rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;background:rgba(255,200,0,0.1);color:#ffc800;border:1px solid rgba(255,200,0,0.25)}
+        .flow-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin:4rem 0;text-align:center}
+        .flow-item{padding:1.5rem 1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;position:relative}
+        .flow-item::after{content:'→';position:absolute;right:-0.7rem;top:50%;transform:translateY(-50%);color:var(--primary);font-size:1.2rem;opacity:0.5}
+        .flow-item:last-child::after{display:none}
+        .flow-icon{font-size:2rem;margin-bottom:0.5rem}
+        .flow-label{font-size:0.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em}
+        .flow-val{font-family:var(--font-mono);font-weight:700;color:var(--primary);font-size:0.9rem;margin-top:0.25rem}
+        .cross-section{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin:4rem 0}
+        .cs-layer{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;backdrop-filter:var(--glass);transition:var(--transition)}
+        .cs-layer:hover{border-color:var(--primary-glow);transform:translateY(-4px)}
+        .cs-layer h4{margin-bottom:1rem;font-size:1.1rem}
+        @media(max-width:1024px){.flow-strip{grid-template-columns:repeat(3,1fr)}.flow-item::after{display:none}.cross-section{grid-template-columns:1fr}}
+        @media(max-width:768px){.flow-strip{grid-template-columns:repeat(2,1fr)}}
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <div class="bg-grain"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+    <!-- Nav -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 2L2 30L16 24L30 30L16 2Z" fill="url(#lg)"/><defs><linearGradient id="lg" x1="2" y1="16" x2="30" y2="16"><stop stop-color="#00f2ff"/><stop offset="1" stop-color="#7000ff"/></linearGradient></defs></svg>
+            <span>AXP</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#lh2">LH2 System</a>
+            <a href="#charging">Charging</a>
+            <a href="#specs">Specs</a>
+        </div>
+        <div class="nav-actions">
+            <a href="index.html#resources" class="btn btn-outline btn-sm hide-mobile">Back to Main</a>
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a><a href="#architecture">Architecture</a><a href="#lh2">LH2 System</a><a href="#charging">Charging</a><a href="#specs">Specs</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero" style="height:80vh;">
+        <div class="hero-content reveal">
+            <div class="hero-badge">Stratospheric Drone Station Platform</div>
+            <h1 class="text-gradient">SKY-DOCK</h1>
+            <p>성층권(20km)에서 10대의 Gold-Runner에 <strong>액체수소(LH2) 카트리지 교체</strong>와<br><strong>초고속 배터리 충전</strong>을 동시 수행하는 차세대 무인 모선 항공기</p>
+            <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+                <a href="#architecture" class="btn btn-primary">System Architecture</a>
+                <a href="#specs" class="btn btn-outline">Full Specifications</a>
+            </div>
+        </div>
+        <div class="dashboard-grid" style="margin-top:5rem">
+            <div class="stat-card"><div class="stat-label">Operating Altitude</div><div class="stat-value">20 km</div></div>
+            <div class="stat-card"><div class="stat-label">Simultaneous Docking</div><div class="stat-value">10 Units</div></div>
+            <div class="stat-card"><div class="stat-label">LH2 Cartridge Swap</div><div class="stat-value">90 sec</div></div>
+            <div class="stat-card"><div class="stat-label">Fast Charge Rate</div><div class="stat-value">500 kW</div></div>
+        </div>
+    </header>
+
+    <!-- Architecture -->
+    <section id="architecture" class="section">
+        <div class="section-header reveal">
+            <div class="hero-badge" style="color:var(--secondary);border-color:var(--secondary-glow)">Platform Architecture</div>
+            <h2 class="section-title text-gradient">Sky-Dock Mothership</h2>
+            <p class="section-subtitle">성층권 장기 체공을 위한 수소연료전지 기반 대형 무인항공기. 하부 도킹 베이에서 10대의 Gold-Runner를 동시에 서비스합니다.</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="reveal">
+                <div class="card-premium">
+                    <div class="card-icon">🛸</div>
+                    <h3 class="text-cyan" style="margin-bottom:1.5rem">Mothership Airframe</h3>
+                    <p class="text-dim">날개 길이 85m, 전장 45m의 CNF/PEKK 복합소재 기체. 태양전지 패널(상부 날개)과 수소연료전지를 결합한 하이브리드 추진으로 성층권에서 72시간 이상 무착륙 체공합니다.</p>
+                    <ul style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;list-style:none">
+                        <li style="margin-bottom:0.75rem">• Wingspan: 85m (CNF/PEKK Composite)</li>
+                        <li style="margin-bottom:0.75rem">• Propulsion: H₂ Fuel Cell 2MW × 4</li>
+                        <li style="margin-bottom:0.75rem">• Solar Array: 1,200m² GaAs Triple-Junction</li>
+                        <li style="margin-bottom:0.75rem">• Endurance: 72+ hrs continuous</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="card-premium">
+                    <div class="card-icon">🔧</div>
+                    <h3 class="text-purple" style="margin-bottom:1.5rem">Docking Bay System</h3>
+                    <p class="text-dim">하부 동체에 배치된 10기의 자동화 도킹 포트. Gold-Runner가 접근하면 LiDAR/비전 기반 정밀 유도 시스템이 자동 도킹을 완료합니다. 도킹과 동시에 LH2 카트리지 교체와 충전이 병렬로 시작됩니다.</p>
+                    <ul style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;list-style:none">
+                        <li style="margin-bottom:0.75rem">• 10× Automated Docking Ports</li>
+                        <li style="margin-bottom:0.75rem">• LiDAR + Vision Guided Approach</li>
+                        <li style="margin-bottom:0.75rem">• Magnetic Lock + Mechanical Latch</li>
+                        <li style="margin-bottom:0.75rem">• Full Service Time: ≤ 3 min</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LH2 Cartridge System -->
+    <section id="lh2" class="section">
+        <div class="section-header reveal">
+            <div class="hero-badge" style="color:#00c8ff;border-color:rgba(0,200,255,0.3)">LH2 Cartridge Swap</div>
+            <h2 class="section-title text-gradient">Liquid Hydrogen Exchange</h2>
+            <p class="section-subtitle">기존 급유 방식이 아닌, 사전 충전된 LH2 카트리지를 90초 내에 자동 교환하는 혁신적 시스템</p>
+        </div>
+
+        <div class="flow-strip reveal">
+            <div class="flow-item"><div class="flow-icon">🛬</div><div class="flow-label">Auto Dock</div><div class="flow-val">15 sec</div></div>
+            <div class="flow-item"><div class="flow-icon">🔓</div><div class="flow-label">Eject Empty</div><div class="flow-val">20 sec</div></div>
+            <div class="flow-item"><div class="flow-icon">🔄</div><div class="flow-label">Insert Full</div><div class="flow-val">25 sec</div></div>
+            <div class="flow-item"><div class="flow-icon">✅</div><div class="flow-label">Seal & Verify</div><div class="flow-val">20 sec</div></div>
+            <div class="flow-item"><div class="flow-icon">🚀</div><div class="flow-label">Release</div><div class="flow-val">10 sec</div></div>
+        </div>
+
+        <div class="grid-2">
+            <div class="reveal">
+                <div class="card-premium">
+                    <h3 style="margin-bottom:1.5rem"><span class="lh2-badge" style="margin-right:0.75rem">LH2</span> 카트리지 규격</h3>
+                    <p class="text-dim">각 카트리지는 이중벽 진공 단열 구조로 -253°C의 액체수소 15kg을 저장합니다. 자동 퀵-릴리즈 메커니즘으로 로봇 암을 통한 무인 교체가 가능하며, 빈 카트리지는 모선 내부에서 재충전됩니다.</p>
+                    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">LH2 Capacity</div>
+                            <div style="font-size:1.25rem;font-weight:800;color:#00c8ff">15 kg</div>
+                        </div>
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">Energy Content</div>
+                            <div style="font-size:1.25rem;font-weight:800;color:#00c8ff">500 kWh</div>
+                        </div>
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">Storage Temp</div>
+                            <div style="font-size:1.25rem;font-weight:800">-253°C</div>
+                        </div>
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">Swap Time</div>
+                            <div style="font-size:1.25rem;font-weight:800;color:var(--primary)">90 sec</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="card-premium">
+                    <h3 style="margin-bottom:1.5rem">🤖 Robotic Swap Mechanism</h3>
+                    <p class="text-dim">6축 로봇 암이 도킹된 Gold-Runner의 연료 베이에서 소진된 카트리지를 자동 추출하고, 사전 냉각된 만충 카트리지를 정밀 삽입합니다.</p>
+                    <ul style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;list-style:none">
+                        <li style="margin-bottom:0.75rem">• 6-Axis Cryo-Rated Robotic Arm</li>
+                        <li style="margin-bottom:0.75rem">• Quick-Release Bayonet Lock</li>
+                        <li style="margin-bottom:0.75rem">• Auto Purge (He gas) Before Swap</li>
+                        <li style="margin-bottom:0.75rem">• Leak Detection: ≤ 1×10⁻⁶ mbar·L/s</li>
+                        <li style="margin-bottom:0.75rem">• Thermal Pre-conditioning (-250°C)</li>
+                        <li style="margin-bottom:0.75rem">• Onboard Electrolyzer for LH2 Refill</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fast Charging -->
+    <section id="charging" class="section">
+        <div class="section-header reveal">
+            <div class="hero-badge" style="color:#ffc800;border-color:rgba(255,200,0,0.3)">Ultra-Fast Charging</div>
+            <h2 class="section-title text-gradient">500kW Stratospheric Charging</h2>
+            <p class="section-subtitle">LH2 카트리지 교체와 동시에 진행되는 초고속 배터리 충전 — 도킹 3분 안에 모든 서비스 완료</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="reveal">
+                <div class="card-premium">
+                    <div class="card-icon">⚡</div>
+                    <h3 style="color:#ffc800;margin-bottom:1.5rem">Charging Architecture</h3>
+                    <p class="text-dim">모선의 수소연료전지(8MW 총출력)에서 생산된 전력을 DC 2,000V 버스를 통해 각 도킹 포트로 분배합니다. 도킹 커넥터를 통해 500kW가 Gold-Runner의 LiS 배터리팩으로 직접 공급됩니다.</p>
+                    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">Per Port</div>
+                            <div style="font-size:1.25rem;font-weight:800;color:#ffc800">500 kW</div>
+                        </div>
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">Total Output</div>
+                            <div style="font-size:1.25rem;font-weight:800;color:#ffc800">5 MW</div>
+                        </div>
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">DC Bus</div>
+                            <div style="font-size:1.25rem;font-weight:800">2,000V</div>
+                        </div>
+                        <div style="padding:1.25rem;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02)">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.4rem">0→80% Time</div>
+                            <div style="font-size:1.25rem;font-weight:800;color:var(--primary)">2.5 min</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="card-premium">
+                    <div class="card-icon">🛡️</div>
+                    <h3 class="text-cyan" style="margin-bottom:1.5rem">Safety Systems</h3>
+                    <p class="text-dim">성층권의 극한 환경(-56°C, 5.5kPa)에서의 안전한 수소 취급과 고전력 충전을 위한 다중 보호 시스템.</p>
+                    <ul style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;list-style:none">
+                        <li style="margin-bottom:0.75rem">• H₂ Leak Sensor Array (ppb level)</li>
+                        <li style="margin-bottom:0.75rem">• Auto Vent System (성층권 안전 방출)</li>
+                        <li style="margin-bottom:0.75rem">• Triple-Redundant BMS per Port</li>
+                        <li style="margin-bottom:0.75rem">• Arc Fault Detection (AFD)</li>
+                        <li style="margin-bottom:0.75rem">• Emergency Undock: ≤ 0.3 sec</li>
+                        <li style="margin-bottom:0.75rem">• Cryo-Isolation Bulkhead (MLI)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Table -->
+    <section id="specs" class="section">
+        <div class="section-header reveal"><h2 class="section-title text-gradient">System Specifications</h2></div>
+        <div class="spec-container reveal">
+            <table class="spec-table">
+                <thead><tr><th>Parameter</th><th>Sky-Dock Mothership</th><th>Gold-Runner (수급측)</th></tr></thead>
+                <tbody>
+                    <tr><td>Operating Altitude</td><td>18,000 ~ 22,000 m</td><td>접근 고도 ≤ 20,000 m</td></tr>
+                    <tr><td>Wingspan / Length</td><td>85 m / 45 m</td><td>12 m / 8.5 m</td></tr>
+                    <tr><td>MTOW</td><td>28,000 kg</td><td>850 kg</td></tr>
+                    <tr><td>Propulsion</td><td>H₂ FC 2MW × 4 + Solar 480kW</td><td>H₂ FC 150kW + LiS Battery</td></tr>
+                    <tr><td>Endurance</td><td>72+ hours</td><td>4.5 hours (per cartridge)</td></tr>
+                    <tr><td>LH2 Storage (Mothership)</td><td>3,000 kg (200 cartridges)</td><td>—</td></tr>
+                    <tr><td>LH2 Cartridge Capacity</td><td>15 kg / cartridge</td><td>1 cartridge slot</td></tr>
+                    <tr><td>Cartridge Swap Time</td><td>90 seconds</td><td>90 seconds</td></tr>
+                    <tr><td>Charging Voltage</td><td>DC 2,000V Bus</td><td>DC 800V (변환)</td></tr>
+                    <tr><td>Charging Power</td><td>500 kW × 10 ports = 5 MW</td><td>500 kW 수전</td></tr>
+                    <tr><td>Charge Time (0→80%)</td><td>—</td><td>2.5 min</td></tr>
+                    <tr><td>Total Service Time</td><td colspan="2" style="text-align:center;color:var(--primary);font-weight:800">≤ 3 minutes (LH2 swap + charge parallel)</td></tr>
+                    <tr><td>Docking Method</td><td>Auto LiDAR/Vision Guided</td><td>Auto Approach + Mag Lock</td></tr>
+                    <tr><td>Communication</td><td>Ka-Band SATCOM + Optical Link</td><td>5G + Optical Uplink</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+        <div class="card-premium reveal" style="max-width:1000px;margin:0 auto;text-align:center;background:linear-gradient(135deg,rgba(0,200,255,0.05),rgba(255,200,0,0.05))">
+            <h2 class="section-title text-gradient">Unlimited Range, Zero Emissions</h2>
+            <p class="text-dim" style="margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto">Sky-Dock와 Gold-Runner의 결합으로 무한 항속, 제로 에미션 항공 작전 체계를 실현합니다.</p>
+            <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap">
+                <a href="index.html" class="btn btn-primary">Back to Gold-Runner</a>
+                <a href="aerial-charging.html" class="btn btn-outline">View Sky-Link System</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AXP — Sky-Dock Stratospheric Operations. All Rights Reserved.</p>
+            <a href="index.html" class="logo"><span>AXP</span></a>
+        </div>
+    </footer>
+
+    <script src="website_script.js"></script>
+</body>
+</html>

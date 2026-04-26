@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXP | Gold-Runner Manufacturing Specifications</title>
+    <link rel="stylesheet" href="spec_style.css">
+    <style>
+        .back-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.25rem;
+            border-radius: 100px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .back-home:hover {
+            background: var(--accent);
+            color: #000;
+            transform: translateX(-5px);
+        }
+        @media (max-width: 1024px) {
+            .back-home {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+    </a>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>G-HVTOL Gold-Runner<br>CNF 3D프린팅 및 그래핀 증착<br>양산 개발 통합 시방서</h1>
+            <p class="subtitle">탄소나노섬유(Carbon Nanofiber) 적층제조 + 그래핀(Graphene) 증착 공정을 통한 차세대 비행체 기체 양산 기술 검증 및 제조 시방</p>
+            <div class="meta-grid">
+                <div class="meta-item"><div class="label">문서번호</div><div class="value">GR-MFG-SPEC-2026-001</div></div>
+                <div class="meta-item"><div class="label">버전</div><div class="value">v1.1 (Full)</div></div>
+                <div class="meta-item"><div class="label">작성일</div><div class="value">2026-04-26</div></div>
+                <div class="meta-item"><div class="label">보안등급</div><div class="value">CONFIDENTIAL</div></div>
+                <div class="meta-item"><div class="label">적용규격</div><div class="value">AS9100D / ASTM F42</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="toc">
+            <h2>📋 목차</h2>
+            <ol>
+                <li><a href="#s1">개요 및 목적</a></li>
+                <li><a href="#s2">소재 시방 — CNF 복합소재</a></li>
+                <li><a href="#s3">3D프린팅(적층제조) 공정 시방</a></li>
+                <li><a href="#s4">그래핀 증착 공정 시방</a></li>
+                <li><a href="#s5">기체 구조 설계 요구사항</a></li>
+                <li><a href="#s6">품질검증 및 시험 체계</a></li>
+                <li><a href="#s7">양산 전환 기준</a></li>
+                <li><a href="#s8">환경·안전 및 인증</a></li>
+                <li><a href="#s9">검증 결과 종합</a></li>
+            </ol>
+        </nav>
+
+        <!-- Section 1 -->
+        <section id="s1">
+            <h2>1. 개요 및 목적</h2>
+            <p>본 시방서는 G-HVTOL 'Gold-Runner' 비행체 기체(Airframe)를 <strong>탄소나노섬유(CNF) 강화 복합소재 3D프린팅</strong>으로 제작하고, 제작된 기체 표면에 <strong>그래핀(Graphene) 증착</strong>을 수행하여 구조적 안정성, 전자파 차폐, 낙뢰 보호 성능을 확보하기 위한 양산 단계 개발 시방을 정의한다.</p>
+            <h3>1.1 적용 범위</h3>
+            <ul>
+                <li>비행체 기체 구조물 전체 (동체, 날개, 붐, 페어링)</li>
+                <li>CNF/PEKK 복합소재 FFF(Fused Filament Fabrication) 적층제조</li>
+                <li>CVD(Chemical Vapor Deposition) 기반 그래핀 전사(Transfer) 증착</li>
+                <li>양산 전환을 위한 품질기준 및 검증 체계</li>
+            </ul>
+            <h3>1.2 참조 규격</h3>
+            <table>
+                <thead><tr><th>규격번호</th><th>명칭</th><th>적용분야</th></tr></thead>
+                <tbody>
+                    <tr><td>AS9100D</td><td>항공우주 품질경영시스템</td><td>전체 제조공정</td></tr>
+                    <tr><td>ASTM F2971</td><td>적층제조 시험편 데이터 보고</td><td>3D프린팅 시험</td></tr>
+                    <tr><td>ASTM D3039</td><td>복합소재 인장 시험</td><td>소재 검증</td></tr>
+                    <tr><td>ASTM D790</td><td>굴곡 시험 방법</td><td>소재 검증</td></tr>
+                    <tr><td>ASTM D7264</td><td>고급 복합재 굴곡 시험</td><td>구조 검증</td></tr>
+                    <tr><td>ASTM D5379</td><td>전단 시험 방법</td><td>소재 검증</td></tr>
+                    <tr><td>14 CFR 25.853</td><td>난연성·연기·독성(FST)</td><td>환경 시험</td></tr>
+                    <tr><td>DO-160G</td><td>항공전자장비 환경조건</td><td>환경 시험</td></tr>
+                </tbody>
+            </table>
+            <div class="card info"><strong>⚡ 핵심 목표:</strong> CNF 3D프린팅으로 기존 금속/CFRP 대비 <strong>30% 이상 경량화</strong>, 그래핀 증착으로 <strong>인장강도 18~50% 향상, 전기전도도 600% 향상</strong>을 통한 구조적 무결성 확보</div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="s2">
+            <h2>2. 소재 시방 — CNF 복합소재</h2>
+            <h3>2.1 기본 소재 구성</h3>
+            <table>
+                <thead><tr><th>구성요소</th><th>사양</th><th>비율</th><th>역할</th></tr></thead>
+                <tbody>
+                    <tr><td>매트릭스</td><td>PEKK (Polyetherketoneketone)</td><td>75~80 wt%</td><td>고온 내열성, 내화학성 구조 기반</td></tr>
+                    <tr><td>강화재</td><td>CNF (직경 80~150nm, 길이 10~30μm)</td><td>15~20 wt%</td><td>나노스케일 강화, 균열전파 억제</td></tr>
+                    <tr><td>첨가재</td><td>단축 탄소섬유(Short CF, 100μm)</td><td>3~5 wt%</td><td>매크로 스케일 보강</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.2 소재 물성 요구사항</h3>
+            <table>
+                <thead><tr><th>물성 항목</th><th>시험규격</th><th>목표값</th><th>등급</th></tr></thead>
+                <tbody>
+                    <tr><td>밀도</td><td>ASTM D792</td><td>1.35~1.45 g/cm³</td><td><span class="badge pass">관리</span></td></tr>
+                    <tr><td>인장강도(XY)</td><td>ASTM D3039</td><td>≥ 145 MPa</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>인장강도(Z)</td><td>ASTM D3039</td><td>≥ 85 MPa</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>인장탄성률</td><td>ASTM D3039</td><td>≥ 12 GPa</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>굴곡강도</td><td>ASTM D790</td><td>≥ 180 MPa</td><td><span class="badge important">중요</span></td></tr>
+                    <tr><td>굴곡탄성률</td><td>ASTM D790</td><td>≥ 14 GPa</td><td><span class="badge important">중요</span></td></tr>
+                    <tr><td>Izod 충격강도</td><td>ASTM D256</td><td>≥ 8 kJ/m²</td><td><span class="badge important">중요</span></td></tr>
+                    <tr><td>유리전이온도(Tg)</td><td>DSC</td><td>≥ 160°C</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>열팽창계수(CTE)</td><td>ASTM E831</td><td>≤ 15×10⁻⁶/°C</td><td><span class="badge important">중요</span></td></tr>
+                    <tr><td>공극률(Void)</td><td>Micro-CT</td><td>≤ 1.5%</td><td><span class="badge critical">필수</span></td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.3 필라멘트 규격</h3>
+            <table>
+                <thead><tr><th>항목</th><th>규격</th></tr></thead>
+                <tbody>
+                    <tr><td>직경</td><td>1.75 ± 0.03 mm</td></tr>
+                    <tr><td>진원도</td><td>≥ 98%</td></tr>
+                    <tr><td>수분함량(출하시)</td><td>≤ 0.02%</td></tr>
+                    <tr><td>CNF 분산 균일도</td><td>CV ≤ 5% (SEM 검증)</td></tr>
+                    <tr><td>롯트(Lot) 추적성</td><td>전수 QR코드 기반 추적</td></tr>
+                </tbody>
+            </table>
+            <div class="card warn"><strong>⚠️ 필라멘트 관리:</strong> PEKK 기반 필라멘트는 극도의 흡습성 보유. 건조 조건: <strong>80°C / 6~8시간</strong>, 프린팅 중 드라이박스 투입 필수. 미건조 시 층간 접착력 최대 40% 저하.</div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="s3">
+            <h2>3. 3D프린팅(적층제조) 공정 시방</h2>
+            <h3>3.1 장비 요구사항</h3>
+            <table>
+                <thead><tr><th>항목</th><th>요구사양</th><th>비고</th></tr></thead>
+                <tbody>
+                    <tr><td>프린팅 방식</td><td>FFF (Fused Filament Fabrication)</td><td>산업용 대형 프린터</td></tr>
+                    <tr><td>빌드 볼륨</td><td>≥ 1000×600×500 mm</td><td>동체 일체 성형 기준</td></tr>
+                    <tr><td>노즐 재질</td><td>초경합금 또는 루비</td><td>CNF 마모 방지 필수</td></tr>
+                    <tr><td>노즐 직경</td><td>0.6 mm (기본) / 0.8 mm (외벽)</td><td>막힘 방지</td></tr>
+                    <tr><td>핫엔드 타입</td><td>올-메탈 (All-Metal)</td><td>380°C 이상 대응</td></tr>
+                    <tr><td>챔버 환경</td><td>밀폐형, 온도제어 (120~180°C)</td><td>PEKK 결정화 제어</td></tr>
+                    <tr><td>베드 온도</td><td>150~180°C</td><td>뒤틀림 방지</td></tr>
+                </tbody>
+            </table>
+
+            <h3>3.2 프린팅 파라미터 (Frozen Process)</h3>
+            <div class="card danger"><strong>🔒 공정 동결(Frozen Process) 선언:</strong> 아래 파라미터는 양산 인증 후 변경 불가. 변경 시 전체 재인증(Re-qualification) 필수.</div>
+            <table>
+                <thead><tr><th>파라미터</th><th>설정값</th><th>허용 편차</th></tr></thead>
+                <tbody>
+                    <tr><td>노즐 온도</td><td>370°C</td><td>±3°C</td></tr>
+                    <tr><td>베드 온도</td><td>165°C</td><td>±5°C</td></tr>
+                    <tr><td>챔버 온도</td><td>145°C</td><td>±5°C</td></tr>
+                    <tr><td>레이어 높이</td><td>0.15 mm</td><td>±0.02 mm</td></tr>
+                    <tr><td>프린팅 속도</td><td>30 mm/s (구조부)</td><td>±2 mm/s</td></tr>
+                    <tr><td>인필 패턴</td><td>Gyroid</td><td>변경 불가</td></tr>
+                    <tr><td>인필 밀도</td><td>95% (구조부) / 70% (페어링)</td><td>±2%</td></tr>
+                </tbody>
+            </table>
+
+            <h3>3.3 제조 프로세스 흐름</h3>
+            <div class="process-flow">
+                <div class="process-step"><div class="step-num">1</div><div class="step-title">소재 입고검사</div><div class="step-desc">필라멘트 직경, CNF 분산도 검증</div></div>
+                <div class="process-step"><div class="step-num">2</div><div class="step-title">건조 처리</div><div class="step-desc">80°C / 8h 진공건조</div></div>
+                <div class="process-step"><div class="step-num">3</div><div class="step-title">장비 캘리브레이션</div><div class="step-desc">노즐, 베드 센서 교정</div></div>
+                <div class="process-step"><div class="step-num">4</div><div class="step-title">본 제품 출력</div><div class="step-desc">G-code 실행, 실시간 모니터링</div></div>
+                <div class="process-step"><div class="step-num">5</div><div class="step-title">어닐링 후처리</div><div class="step-desc">200°C / 2h → 서냉</div></div>
+                <div class="process-step"><div class="step-num">6</div><div class="step-title">최종 검사</div><div class="step-desc">3D 스캐닝, 비파괴 검사</div></div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="s4">
+            <h2>4. 그래핀 증착 공정 시방</h2>
+            <h3>4.1 증착 방식 선정</h3>
+            <p>고분자 복합소재 기체에 직접 CVD 성장은 열적 한계로 불가능하므로, <strong>Cu 촉매 기판 CVD 성장 → 드라이 전사(Dry Transfer)</strong> 2단계 공정을 채택한다.</p>
+
+            <h3>4.2 그래핀 증착 품질 기준</h3>
+            <table>
+                <thead><tr><th>검사 항목</th><th>측정 방법</th><th>합격 기준</th><th>등급</th></tr></thead>
+                <tbody>
+                    <tr><td>라만 스펙트럼 D/G 비</td><td>라만 분광법 (514nm)</td><td>I_D/I_G ≤ 0.1</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>면저항(Sheet Resistance)</td><td>4점 프로브</td><td>≤ 500 Ω/sq</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>커버리지(Coverage)</td><td>SEM 이미지 분석</td><td>≥ 95%</td><td><span class="badge critical">필수</span></td></tr>
+                    <tr><td>접착력(Adhesion)</td><td>크로스컷 테이프 시험</td><td>ASTM D3359 5B 등급</td><td><span class="badge important">중요</span></td></tr>
+                </tbody>
+            </table>
+
+            <h3>4.3 성능 향상 목표</h3>
+            <table>
+                <thead><tr><th>성능 항목</th><th>증착 전(Base)</th><th>증착 후(Target)</th><th>향상률</th></tr></thead>
+                <tbody>
+                    <tr><td>인장강도</td><td>145 MPa</td><td>≥ 171 MPa</td><td>+18% 이상</td></tr>
+                    <tr><td>층간전단강도(ILSS)</td><td>35 MPa</td><td>≥ 45 MPa</td><td>+28% 이상</td></tr>
+                    <tr><td>전기전도도</td><td>~10⁻⁸ S/m</td><td>≥ 10⁻² S/m</td><td>×10⁶ 향상</td></tr>
+                    <tr><td>EMI 차폐효과</td><td>< 5 dB</td><td>≥ 35 dB</td><td>항공 기준 충족</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="s5">
+            <h2>5. 기체 구조 설계 요구사항</h2>
+            <h3>5.1 구조 분할 및 프린팅 전략</h3>
+            <table>
+                <thead><tr><th>구조 영역</th><th>프린팅 방향</th><th>인필 밀도</th><th>외벽 수</th><th>레이어 높이</th></tr></thead>
+                <tbody>
+                    <tr><td>동체 중앙(하중 집중부)</td><td>수직(Z축=비행축)</td><td>95%</td><td>6 walls</td><td>0.12 mm</td></tr>
+                    <tr><td>날개 스파(Spar)</td><td>수평(X축=스팬방향)</td><td>95%</td><td>5 walls</td><td>0.12 mm</td></tr>
+                    <tr><td>날개 스킨(Skin)</td><td>수평</td><td>70%</td><td>4 walls</td><td>0.15 mm</td></tr>
+                    <tr><td>모터 붐(Boom ×4)</td><td>수평(X축=붐축)</td><td>90%</td><td>5 walls</td><td>0.15 mm</td></tr>
+                    <tr><td>배터리 케이스</td><td>수직</td><td>95%</td><td>6 walls</td><td>0.12 mm</td></tr>
+                </tbody>
+            </table>
+
+            <h3>5.2 구조 하중 요구사항</h3>
+            <table>
+                <thead><tr><th>하중 조건</th><th>설계 계수</th><th>적용 영역</th></tr></thead>
+                <tbody>
+                    <tr><td>제한 하중(Limit Load)</td><td>1.0 × MTOW × 3.8G</td><td>전체 구조</td></tr>
+                    <tr><td>극한 하중(Ultimate Load)</td><td>1.5 × Limit Load</td><td>전체 구조</td></tr>
+                    <tr><td>피로 수명</td><td>≥ 10,000 비행시간</td><td>주요 구조부</td></tr>
+                    <tr><td>안전 계수(Safety Factor)</td><td>≥ 2.0 (1차 구조), ≥ 1.5 (2차)</td><td>구분 적용</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="s6">
+            <h2>6. 품질검증 및 시험 체계</h2>
+            <h3>6.1 Building Block 시험 체계</h3>
+            <div class="process-flow">
+                <div class="process-step"><div class="step-num">L1</div><div class="step-title">쿠폰 시험</div><div class="step-desc">소재 물성 n≥30</div></div>
+                <div class="process-step"><div class="step-num">L2</div><div class="step-title">요소 시험</div><div class="step-desc">접합부, 체결부</div></div>
+                <div class="process-step"><div class="step-num">L3</div><div class="step-title">서브컴포넌트</div><div class="step-desc">날개 박스, 동체 섹션</div></div>
+                <div class="process-step"><div class="step-num">L4</div><div class="step-title">풀스케일</div><div class="step-desc">완성 기체 하중 시험</div></div>
+            </div>
+
+            <h3>6.2 비파괴 검사(NDT) 체계</h3>
+            <table>
+                <thead><tr><th>NDT 방법</th><th>적용 대상</th><th>검출 목표</th><th>합격 기준</th></tr></thead>
+                <tbody>
+                    <tr><td>X-ray CT</td><td>전체 출력물</td><td>내부 공극, 미접착</td><td>공극률 ≤1.5%</td></tr>
+                    <tr><td>초음파 탐상(UT)</td><td>접합부</td><td>층간 박리(Delamination)</td><td>박리 면적 ≤6mm²</td></tr>
+                    <tr><td>라만 맵핑</td><td>그래핀 증착면</td><td>결정성, 결함 밀도</td><td>D/G ≤0.1 (95%)</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="s7">
+            <h2>7. 양산 전환 기준</h2>
+            <h3>7.1 양산 준비 완료(MRL) 판정 기준</h3>
+            <table>
+                <thead><tr><th>판정 항목</th><th>기준</th><th>상태</th></tr></thead>
+                <tbody>
+                    <tr><td>소재 인증</td><td>B-basis 물성 데이터 확보 (n≥30)</td><td><span class="badge important">진행중</span></td></tr>
+                    <tr><td>공정 동결</td><td>3σ 이내 파라미터 제어 실증</td><td><span class="badge important">진행중</span></td></tr>
+                    <tr><td>그래핀 증착 수율</td><td>≥ 90%</td><td><span class="badge important">진행중</span></td></tr>
+                    <tr><td>시제품 비행시험</td><td>100시간 무결함 비행</td><td><span class="badge important">진행중</span></td></tr>
+                    <tr><td>품질관리시스템</td><td>AS9100D 인증 완료</td><td><span class="badge important">진행중</span></td></tr>
+                </tbody>
+            </table>
+
+            <h3>7.2 양산 택트 타임 목표</h3>
+            <table>
+                <thead><tr><th>공정단계</th><th>소요시간</th><th>비고</th></tr></thead>
+                <tbody>
+                    <tr><td>소재 준비/건조</td><td>8h</td><td>병렬 처리</td></tr>
+                    <tr><td>3D프린팅 (동체)</td><td>48~72h</td><td>듀얼 프린터 교차 운용</td></tr>
+                    <tr><td>3D프린팅 (날개×2)</td><td>24~36h</td><td>전용 프린터</td></tr>
+                    <tr><td>3D프린팅 (붐×4 + 기타)</td><td>16~24h</td><td>배치 출력</td></tr>
+                    <tr><td>어닐링 및 정삭</td><td>10h</td><td>오븐 + CNC</td></tr>
+                    <tr><td>그래핀 전사 및 조립</td><td>20h</td><td>드라이 전사 + 체결</td></tr>
+                    <tr><td><strong>총 택트 타임</strong></td><td><strong>~7일/기</strong></td><td><strong>월 4기 생산 (기본)</strong></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="s8">
+            <h2>8. 환경·안전 및 인증</h2>
+            <h3>8.1 작업 환경 안전</h3>
+            <table>
+                <thead><tr><th>위험요소</th><th>발생 공정</th><th>대응 조치</th></tr></thead>
+                <tbody>
+                    <tr><td>CNF 나노입자 흡입</td><td>절단, 후처리</td><td>HEPA 배기, N99 마스크</td></tr>
+                    <tr><td>고온 화상</td><td>프린팅, 어닐링</td><td>차열 차폐, 인터락</td></tr>
+                    <tr><td>유해가스</td><td>PEKK 열분해 시</td><td>챔버 밀폐, 스크러버</td></tr>
+                    <tr><td>Cu 에칭 폐액</td><td>그래핀 전사</td><td>중화처리, 위탁처리</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="s9">
+            <h2>9. 검증 결과 종합</h2>
+            <div class="verify-grid">
+                <div class="verify-item">
+                    <div class="v-header"><div class="v-title">CNF/PEKK 소재 적합성</div><span class="badge pass">타당</span></div>
+                    <p>PEKK Tg≥160°C로 비행 환경 충족. CNF 15~20wt% 시 인장강도 145MPa 달성. 알루미늄 대비 50% 경량화.</p>
+                </div>
+                <div class="verify-item">
+                    <div class="v-header"><div class="v-title">Z축 이방성 리스크</div><span class="badge important">조건부</span></div>
+                    <p>Z축 강도는 XY 대비 40~60%. 프린팅 방향 최적화 + 그래핀 보강 필요. 안전계수 2.5 적용 필수.</p>
+                </div>
+                <div class="verify-item">
+                    <div class="v-header"><div class="v-title">그래핀 증착 효과</div><span class="badge pass">타당</span></div>
+                    <p>인장강도 +18~50%, 전기전도도 ×10⁶, EMI 차폐 ≥35dB 확보 가능 확인.</p>
+                </div>
+                <div class="verify-item">
+                    <div class="v-header"><div class="v-title">양산 실현성</div><span class="badge pass">타당</span></div>
+                    <p>산업용 FFF 장비 기반 7일/기 택트 타임 가능. 월 4기 생산 체계 수립 타당.</p>
+                </div>
+            </div>
+            <div class="card success">
+                <strong>✅ 최종 판정: 양산 개발 착수 승인 (조건부)</strong><br><br>
+                1. CNF/PEKK 3D프린팅 및 그래핀 증착 기술의 결합은 기체 성능 및 양산성 측면에서 우수함.<br>
+                2. 선행 조건: Z축 보완 FEA 완료, 3D 전사 균일성 95% 달성, 100시간 비행시험 무결함 달성.
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>G-HVTOL Gold-Runner | CNF 3D프린팅 + 그래핀증착 양산 개발 통합 시방서 v1.1</p>
+            <p>문서번호: GR-MFG-SPEC-2026-001 | CONFIDENTIAL</p>
+            <p>&copy; 2026 AXP Aerospace Division. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

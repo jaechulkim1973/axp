@@ -1,46 +1,34 @@
 # AXP | G-HVTOL Gold-Runner
 
-This is the official product landing page for the **AXP Gold-Runner**, a next-generation G-HVTOL aircraft utilizing Carbon Nanofiber (CNF) 3D printing and Graphene CVD deposition technology.
+Next-generation aerospace platform leveraging CNF 3D Printing and Graphene Deposition technology.
 
-## 🌐 Live Demo
-[axp.kr](https://axp.kr) (Pending deployment)
+## 🚀 Overview
+AXP Gold-Runner represents the pinnacle of aerospace structural integrity and lightweight engineering. This project documents the technical specifications, manufacturing processes, and the RWA/STO ecosystem surrounding the G-HVTOL platform.
 
-## 🚀 Deployment Instructions
+## 🌐 Live Site
+**Domain:** [axp.kr](https://axp.kr)  
+**Host:** Vercel  
+**Repository:** [jaechulkim1973/axp](https://github.com/jaechulkim1973/axp)
 
-### 1. File Preparation
-Before pushing to GitHub, ensure you rename the generated images to match the `index.html` references:
-- Rename `gold_runner_exterior_...png` to `hero-gold-runner.png`
-- Rename `cnf_3d_printing_process_...png` to `cnf-printing.png`
-- Rename `graphene_structure_detail_...png` to `graphene-detail.png`
+## 🛠 Technology Stack
+- **Frontend:** HTML5, CSS3 (Vanilla), JavaScript (ES6+)
+- **Design:** Ultra-premium glassmorphism, high-tech dark mode
+- **Deployment:** Vercel with clean URLs and security headers
 
-Place these images in the root directory along with `index.html`, `website_style.css`, and `website_script.js`.
+## 📂 Key Pages
+- `index.html`: Main landing page with technology overview and RWA ecosystem.
+- `specifications.html`: Comprehensive technical data sheet.
+- `aerial-charging.html`: Sky-Link dual-mode aerial refueling and charging network.
 
-### 2. Push to GitHub
-Initialize a git repository and push to your GitHub account (`jaechulkim1973`):
-```bash
-git init
-git add .
-git commit -m "Initial commit for AXP Gold-Runner website"
-git remote add origin https://github.com/jaechulkim1973/axp.git
-git push -u origin main
-```
+## 🚢 Deployment Instructions
+1. **GitHub Push**: Run the provided `deploy.bat` to push the latest changes to the `jaechulkim1973/axp` repository.
+2. **Vercel Connection**:
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard).
+   - Click "New Project" and import the `jaechulkim1973/axp` repository.
+   - Vercel will automatically detect the static site configuration.
+3. **Domain Setup**:
+   - In Vercel Project Settings > Domains, add `axp.kr`.
+   - Update your DNS settings at your domain registrar (A record/CNAME as provided by Vercel).
 
-### 3. Deploy to Vercel
-1. Log in to [Vercel](https://vercel.com).
-2. Click **Add New** > **Project**.
-3. Import your `jaechulkim1973/axp` repository.
-4. Vercel will automatically detect the static files. Click **Deploy**.
-5. Once deployed, go to **Settings** > **Domains**.
-6. Add `axp.kr` to link your domain.
-
-## 🛠 Tech Stack
-- HTML5
-- Vanilla CSS3 (Custom Design System)
-- JavaScript (Scroll Reveal Animations)
-- AI-Generated Aerospace Visuals
-
-## 📄 Documentation
-The technical manufacturing specification for this project is available in `CNF_Graphene_Development_Spec.html`.
-
----
-© 2026 AXP. Developed by jaechulkim1973.
+## 📄 License
+© 2026 AXP — Advanced Aerospace Platforms. All technical documentation is confidential and proprietary.

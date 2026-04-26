@@ -1,76 +1,76 @@
 @echo off
+:: Set character set to UTF-8
 chcp 65001 >nul
-title AXP | Gold-Runner Master Deployment
-setlocal enabledelayedexpansion
+title AXP Gold-Runner Robust Deployer
+setlocal
 
 echo ============================================================
-echo      AXP | G-HVTOL Gold-Runner Master Deployment
+echo      AXP Gold-Runner - Robust Deployment System
 echo ============================================================
 echo.
-cd /d "%~dp0"
 
-:: 1. Check Git Environment
-echo [1/6] Checking Git Environment...
-git --version >nul 2>&1
+:: Path check
+cd /d "%~dp0"
+echo Current Path: %CD%
+echo.
+
+:: Check Git availability
+where git >nul 2>&1
 if %ERRORLEVEL% neq 0 (
-    echo [X] Error: Git is not installed or not in PATH.
+    echo [ERROR] Git is not installed or not found in System PATH.
+    echo Please install Git from https://git-scm.com/
     pause
     exit /b
 )
 
+:: 1. Force Clean Git State
+echo [1/4] Preparing Git Environment...
 if not exist .git (
-    echo [!] Initializing new Git repository...
+    echo Initializing new repository...
     git init
     git branch -M main
 )
-echo.
 
-:: 2. Remote Configuration
-echo [2/6] Configuring Remote (jaechulkim1973/axp)...
+:: 2. Remote Setup
+echo [2/4] Setting Remote URL...
 git remote remove origin >nul 2>&1
 git remote add origin https://github.com/jaechulkim1973/axp.git
-echo Remote set to: https://github.com/jaechulkim1973/axp.git
+echo Remote: https://github.com/jaechulkim1973/axp.git
 echo.
 
-:: 3. Staging & Commit
-echo [3/6] Staging all assets (HTML, CSS, JS, Images)...
-git add -A
-echo.
-echo [4/6] Creating deployment commit...
-set "commit_msg=deploy: v4.1M Visual Upgrade - High-res Aircraft Images & Master Gallery"
-git commit -m "%commit_msg%"
+:: 3. Commit Changes
+echo [3/4] Staging and Committing...
+git add .
+git commit -m "deploy: v4.1M ultimate visual upgrade"
 echo.
 
-:: 4. Push to GitHub
-echo [5/6] Synchronizing with GitHub...
-echo (You may be prompted for credentials if not logged in)
+:: 4. Push with Detail
+echo [4/4] Pushing to GitHub...
+echo If this hangs, check for a popup login window!
 echo.
 git push -u origin main --force
 
 if %ERRORLEVEL% neq 0 (
     echo.
-    echo [X] PUSH FAILED: Possible authentication issue or network error.
-    echo Please ensure you are logged into GitHub Desktop or have a Personal Access Token set up.
+    echo [!] PUSH FAILED. 
+    echo.
+    echo Possible reasons:
+    echo 1. You are not logged in to GitHub.
+    echo    (Try running: git config --global user.email "your-email@example.com")
+    echo 2. The repository name 'axp' might be different on GitHub.
+    echo 3. Network or Firewall blocking the connection.
+    echo.
+    echo TRY THIS MANUALLY in your terminal:
+    echo git push -u origin main --force
+    echo.
+) else (
+    echo.
     echo ============================================================
-    pause
-    exit /b
+    echo  SUCCESS! Project is now on GitHub.
+    echo  Live at: https://axp.kr
+    echo ============================================================
+    timeout /t 3 >nul
+    start https://axp.kr
 )
-echo.
 
-:: 5. Success & Next Steps
-echo ============================================================
-echo  SUCCESS: Your project is now on GitHub!
-echo ============================================================
-echo.
-echo  LIVE DEPLOYMENT (Vercel):
-echo  1. The build will trigger automatically on Vercel.
-echo  2. Live URL: https://axp.kr
-echo  3. Vercel Console: https://vercel.com/dashboard
-echo.
-echo  Opening Live Site in 5 seconds...
-timeout /t 5 >nul
-start https://axp.kr
-
-echo.
-echo Press any key to exit.
-pause >nul
+pause

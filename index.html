@@ -74,6 +74,10 @@
 
     <!-- Hero Section -->
     <header class="hero">
+        <div class="hero-bg" style="position: absolute; inset: 0; z-index: -1; opacity: 0.4;">
+            <img src="hero-gold-runner.png" alt="Gold-Runner Hero" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) saturate(1.2);">
+            <div style="position: absolute; inset: 0; background: radial-gradient(circle at center, transparent, var(--bg-dark));"></div>
+        </div>
         <div class="hero-content">
             <div class="hero-badge">Aerospace Revolution v4.0M</div>
             <h1 class="text-gradient">GOLD-RUNNER</h1>
@@ -119,11 +123,9 @@
                     <div class="card-icon">🧪</div>
                     <h3 class="text-cyan" style="margin-bottom: 1.5rem;">CNF/PEKK Matrix</h3>
                     <p class="text-dim">PEKK 매트릭스에 20wt%의 탄소나노섬유를 정밀 분산. 나노 스케일에서의 균열 전파를 억제하고 기존 알루미늄 대비 50% 이상의 경량화를 달성합니다.</p>
-                    <ul style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; list-style: none;">
-                        <li style="margin-bottom: 0.75rem;">• High Thermal Resistance (Tg ≥ 160°C)</li>
-                        <li style="margin-bottom: 0.75rem;">• Superior Chemical Stability</li>
-                        <li style="margin-bottom: 0.75rem;">• Structural Integrity (≥ 145 MPa)</li>
-                    </ul>
+                    <div class="feature-img-wrapper" style="margin-top: 2rem; height: 200px;">
+                        <img src="technology_section_1777132923755.png" alt="CNF Matrix Detail" class="feature-img" style="height: 100%; object-fit: cover;">
+                    </div>
                 </div>
             </div>
             <div class="reveal">
@@ -131,12 +133,32 @@
                     <div class="card-icon">⚡</div>
                     <h3 class="text-purple" style="margin-bottom: 1.5rem;">Graphene Deposition</h3>
                     <p class="text-dim">표면에 증착된 단층 그래핀은 기계적 강도를 향상시킬 뿐만 아니라, 600% 향상된 전기전도도로 낙뢰 보호 및 EMI 차폐 기능을 통합합니다.</p>
-                    <ul style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; list-style: none;">
-                        <li style="margin-bottom: 0.75rem;">• Tensile Modulus Improvement</li>
-                        <li style="margin-bottom: 0.75rem;">• Conductive Path Integration</li>
-                        <li style="margin-bottom: 0.75rem;">• Zone 2A Lightning Protection</li>
-                    </ul>
+                    <div class="feature-img-wrapper" style="margin-top: 2rem; height: 200px;">
+                        <img src="graphene-detail.png" alt="Graphene Structure" class="feature-img" style="height: 100%; object-fit: cover;">
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Showcase Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">G-HVTOL Visual Showcase</h2>
+            <p class="section-subtitle">Gold-Runner v4.0M의 압도적인 기체 구조와 첨단 미학</p>
+        </div>
+        <div class="reveal" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem;">
+            <div class="feature-img-wrapper" style="grid-column: span 8; height: 450px;">
+                <img src="hero_section_1777132884047.png" alt="Main Exterior" class="feature-img" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="feature-img-wrapper" style="grid-column: span 4; height: 450px;">
+                <img src="cnf-printing.png" alt="Printing Process" class="feature-img" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="feature-img-wrapper" style="grid-column: span 4; height: 350px;">
+                <img src="technology_section_1777132923755.png" alt="Structural Analysis" class="feature-img" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="feature-img-wrapper" style="grid-column: span 8; height: 350px;">
+                <img src="rwa_section_1777132978001.png" alt="RWA Visualization" class="feature-img" style="height: 100%; object-fit: cover;">
             </div>
         </div>
     </section>
@@ -203,7 +225,7 @@
             </div>
             <div class="reveal">
                 <div class="feature-img-wrapper">
-                    <img src="graphene-detail.png" alt="Tokenization Visual" class="feature-img">
+                    <img src="rwa_section_1777132978001.png" alt="Tokenization Visual" class="feature-img">
                 </div>
             </div>
         </div>
